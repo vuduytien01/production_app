@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   # Quản lý toàn bộ các đường dẫn CRUD cho Task
   resources :tasks
 

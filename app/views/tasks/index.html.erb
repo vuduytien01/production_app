@@ -1,4 +1,10 @@
 <div class="max-w-xl mx-auto p-10">
+  <div class="flex justify-between items-center mb-6 bg-gray-900/50 backdrop-blur-sm p-3 px-4 rounded-xl border border-gray-800 text-xs md:text-sm">
+    <span class="text-gray-400">👤 Tài khoản: <strong class="text-emerald-400"><%= Current.user.email_address %></strong></span>
+    <%= button_to "Đăng xuất 🚪", session_path, method: :delete, 
+        class: "text-red-400 hover:text-red-500 font-semibold transition-all bg-transparent border-0 cursor-pointer" %>
+  </div>
+
   <h1 class="text-4xl font-bold text-gray-800 text-center mb-2">Nhiệm vụ của Tiến 🚀</h1>
   
   <p class="text-sm text-gray-500 text-center mb-8">
