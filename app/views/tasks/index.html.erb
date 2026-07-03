@@ -1,0 +1,39 @@
+<div class="max-w-xl mx-auto p-10">
+  <h1 class="text-4xl font-bold text-gray-800 text-center mb-2">Nhiệm vụ của Tiến 🚀</h1>
+  
+  <p class="text-sm text-gray-500 text-center mb-8">
+    Tiến đã hoàn thành: <span class="font-bold text-emerald-600"><%= @tasks.count(&:completed) %></span> / <%= @tasks.size %> nhiệm vụ
+  </p>
+
+  <div class="text-center mb-8">
+    <%= link_to "➕ Thêm Task mới", new_task_path, 
+        class: "p-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-md transition-all inline-block" %>
+  </div>
+
+  <div id="tasks" class="space-y-4">
+    <% @tasks.each do |task| %>
+      <div class="p-4 bg-white border border-gray-100 rounded-2xl shadow-sm flex items-center justify-between transition-all hover:shadow-md">
+        <div class="flex-1 min-w-0 pr-4">
+          <h2 class="text-lg font-bold truncate <%= 'line-through text-gray-400' if task.completed %>">
+            <%= task.title %>
+          </h2>
+          <p class="text-sm text-gray-500 break-words"><%= task.description %></p>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <%= button_to task.completed ? "🔄" : "✅", 
+              task_path(task), 
+              method: :patch, 
+              params: { task: { completed: !task.completed } }, 
+              class: "p-2 text-sm font-bold rounded-xl text-white shadow transition-all #{task.completed ? 'bg-gray-400 hover:bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'}" %>
+
+          <%= button_to "🗑️", 
+              task_path(task), 
+              method: :delete, 
+              data: { turbo_confirm: "Xóa việc này nhé Tiến?" }, 
+              class: "p-2 text-sm bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl shadow transition-all" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
