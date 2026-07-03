@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: todo-app-rails8
+    runtime: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bin/rails server"
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_MASTER_KEY
+        sync: false
+    disk:
+      name: rails8-storage
+      mountPath: /data
+      sizeGB: 1
